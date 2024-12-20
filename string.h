@@ -4,12 +4,12 @@
 class string {
   public:
     string();
-    char getChar(int i); 
+    char getChar(int i);
 // Student A
 
 //Student B
-    //string(string c_string);
-    //int length();
+    string(const char* c_string);
+    int length();
     //int max_size();
     //void resize(int size_t, char char_);
     //operator=(const string&);
@@ -20,6 +20,7 @@ class string {
   protected:
     char* string_value_;
     int len_;
+    int max_length_ = 100;
 
 };
 
