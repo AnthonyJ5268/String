@@ -1,26 +1,28 @@
 #ifndef STRING_H
 #define STRING_H
 
+#include <cstdlib>
+
 class string {
   public:
     string();
-    char getChar(int i);
+    char getChar(size_t i) const;
 // Student A
 
 //Student B
     string(const char* c_string);
-    int length();
-    //int max_size();
-    //void resize(int size_t, char char_);
-    //operator=(const string&);
-    //operator+(const string&, char char_);
+    size_t length() const;
+    size_t max_size() const;
+    void resize(size_t new_size_, char char_ = ' ');
+    string operator=(const string& s_);
+    friend string operator+(const string& s_, char char_);
 
 //Student C
 
   protected:
     char* string_value_;
-    int len_;
-    int max_length_ = 100;
+    size_t len_;
+    size_t max_length_ = 100;
 
 };
 
