@@ -89,6 +89,7 @@ void test_c_str(){
   string c;
   char* c_string = c.c_str(); // c_str() member function
   std::cout << "String c to c_str: " << c_string << std::endl;
+  delete[] c_string;
 }
 
 void test_size(){
