@@ -1,7 +1,6 @@
 #include <cstdlib>
 #include <iostream>
-//#include <cstring>
-
+#include <type_traits>
 #include "string.h"
 
 void print(string s);
@@ -31,6 +30,36 @@ int main() {
 //Student A
   std::cout<< "Student A" <<std::endl;
   std::cout<<std::endl;
+  string a = string();
+  for (int i = 0 ; i < a.size() ; i++) {
+    std::cout << a.getChar(i);
+  }
+  std::cout << std::endl;
+
+  string b = a; // copy constructor
+  print(b);
+
+  char* c = b.c_str(); // c_str() member function
+  std::cout << "String b to c_str: " << c << std::endl;
+
+  std::cout << "The size of string b is " << b.size() << std::endl; // size() member function
+
+  b.clear();
+  std::cout << "Strings cleared." << std::endl;
+  std::cout << "String b cleared: " << std::endl;
+  print(b);
+    
+  string d;
+  d = 'D';
+  std::cout << "Usage of = operator: " << std::endl;
+  std::cout << "d = ";
+  print(d);
+
+  string e;
+  e = e + " How are you?";
+  std::cout << "Usage of + operator: " << std::endl;
+  std::cout << "(Hello world) + (How are you?) = ";
+  print(e);
 
 //Student B
   std::cout<< "Student B" <<std::endl;
@@ -175,4 +204,3 @@ void test_operator_plus() {
   std::cout << "Operator+: ";
   print(e);
 }
-

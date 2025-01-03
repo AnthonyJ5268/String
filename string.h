@@ -8,7 +8,12 @@ class string {
     string();
     char getChar(size_t i) const;
 // Student A
-    string(const string& other);
+    string(const string& other); // copy constructor
+    char* c_str() const;
+    int size() const;
+    void clear();
+    string& operator=(char c);
+    friend string operator+(const string& s, const char* c); // non-member function
 
 //Student B
     string(const char* c_string);
@@ -26,7 +31,7 @@ class string {
     string& operator=(const char *s) noexcept;
     friend string operator+(const string& lhs, const string& rhs) noexcept;
 
-protected:
+  protected:
     char* string_value_;
     size_t len_;
     size_t max_length_ = 100;
