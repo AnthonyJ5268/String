@@ -3,7 +3,7 @@
 #include <cassert>
 #include "string.h"
 
-//Constructors
+//Default constructor
 string::string() {
     len_ = 11;
     capacity_ = 12;
@@ -12,16 +12,6 @@ string::string() {
     for ( size_t i = 0; i < capacity_; i++ ){
       string_value_[i] = cont[i];
     }
-}
-
-string::string(const string& other) {
-    this->len_ = other.len_;
-    this->capacity_ = other.capacity_;
-    this->string_value_ = new char[this->capacity_];
-    for (size_t i = 0; i < this->len_; ++i) {
-        this->string_value_[i] = other.string_value_[i];
-    }
-    this->string_value_[this->len_] = '\0';
 }
 
 char string::getChar(const size_t i) const{
@@ -33,16 +23,18 @@ char string::getChar(const size_t i) const{
 //copy constructor
 string::string(const string& other) { // deep copy
     len_ = other.len_;
-    string_value_ = new char[other.len_];
-    for (int i = 0; i < len_; i++) {
+    capacity_ = other.capacity_;
+    string_value_ = new char[capacity_];
+    for (size_t i = 0; i < len_; i++) {
         string_value_[i] = other.string_value_[i];
     }
+    string_value_[len_] = '\0';
 }
 
 // c_str()
 char* string::c_str() const{
     char* cstr = new char[len_ + 1];
-    for ( int i = 0; i < len_; i++) {
+    for ( size_t i = 0; i < len_; i++) {
         cstr[i] = string_value_[i];
     }
     cstr[len_] = '\0';
@@ -50,8 +42,8 @@ char* string::c_str() const{
 }
 
 // size()
-int string::size() const{
-    int res = 0;
+size_t string::size() const{
+    size_t res = 0;
     while (res <= len_ && string_value_[res] != '\0') {
         res++;
     }
@@ -76,28 +68,36 @@ string& string::operator=(char c) {
     return *this;
 }
 
-
+// FONCTION DE GEHAO
 // operator+(const string&, const char*)
 string operator+(const string& s, const char* c) {
-    int s_size = s.size();
-    int c_size = 0;
+    size_t s_size = s.size();
+    size_t c_size = 0;
     while (c[c_size] != '\0') {
         c_size++;
     }
-    string res;
-    delete[] res.string_value_;
+    string res(s);
+    //delete[] res.string_value_;
     res.len_ = s_size + c_size;
     res.string_value_ = new char[res.len_ + 1];
-    for ( int i = 0; i < s_size; i++) {
+    for ( size_t i = 0; i < s_size; i++) {
         res.string_value_[i] = s.string_value_[i];
     }
-    for ( int i = 0; i < c_size; i++) {
+    for ( size_t i = 0; i < c_size; i++) {
         res.string_value_[i + s_size] = c[i];
     }
     res.string_value_[res.len_] = '\0';
     return res;
 }
-
+/*
+// !!!!
+// ADAPTATION DEPUIS FONCTION ANTHONY (STUDENT B)
+string operator+(const string& s_, const char* char_) {
+    string s_res_(s_);
+    s_res_.resize(s_.len_ + 1);
+    s_res_.string_value_[s_.len_] = *char_;
+    return s_res_;
+}*/
 
 
 //Student B
@@ -157,6 +157,7 @@ void string::resize(size_t new_size_, char char_){
     string_value_[i] = cont[i];
   }
   len_ = new_size_;
+  capacity_ = len_+1;
 }
 
 
@@ -169,13 +170,13 @@ string string::operator=(const string& s_){
   return *this;
 }
 
-
+/*
 string operator+(const string& s_, char char_) {
     string s_res_(s_);
     s_res_.resize(s_.len_ + 1);
     s_res_.string_value_[s_.len_] = char_;
     return s_res_;
-}
+}*/
 
 //Student C
 

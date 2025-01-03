@@ -12,7 +12,7 @@ void test_hello_world();
 //Student B
 void test_constr_cstring();
 void test_resize();
-void test_operatorsB();
+//void test_operatorsB(); ne pas supprimer
 
 //Student C
 void test_1(string s);
@@ -31,10 +31,7 @@ int main() {
   std::cout<< "Student A" <<std::endl;
   std::cout<<std::endl;
   string a = string();
-  for (int i = 0 ; i < a.size() ; i++) {
-    std::cout << a.getChar(i);
-  }
-  std::cout << std::endl;
+  print(a);
 
   string b = a; // copy constructor
   print(b);
@@ -50,16 +47,22 @@ int main() {
   print(b);
     
   string d;
-  d = 'D';
+  char* letter = new char;
+  *letter = 'D';
+  d = letter;
   std::cout << "Usage of = operator: " << std::endl;
   std::cout << "d = ";
   print(d);
 
+// !!!!! <<<<<<
+// ça c'est l'operator string&+string& et pas string&+char*
   string e;
   e = e + " How are you?";
   std::cout << "Usage of + operator: " << std::endl;
   std::cout << "(Hello world) + (How are you?) = ";
   print(e);
+
+  std::cout<<std::endl;
 
 //Student B
   std::cout<< "Student B" <<std::endl;
@@ -67,7 +70,7 @@ int main() {
   std::cout<<std::endl;
   test_resize();
   std::cout<<std::endl;
-  test_operatorsB();
+  //test_operatorsB(); ne pas supprimer
   std::cout<<std::endl;
 
 //Student C
@@ -115,7 +118,7 @@ void test_resize(){
   std::cout << "length : " << resize_me.length() << std::endl;
   std::cout << "max length : " << resize_me.max_size() << std::endl;
 }
-
+/* ne pas supprimer
 void test_operatorsB(){
   std::cout << "s1 : ";
   string s1("Here's a c-string\0");
@@ -132,7 +135,7 @@ void test_operatorsB(){
   string s3 = s2 + '!';
   std::cout << "s3 : ";
   print(s3);
-}
+}*/
 
 //Student C
 void test_1(string a){
