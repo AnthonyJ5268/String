@@ -7,6 +7,7 @@ class string {
   public:
     string();
     char getChar(size_t i) const;
+    
 // Student A
     string(const string& other); // copy constructor
     char* c_str() const;
@@ -21,7 +22,7 @@ class string {
     size_t max_size() const;
     void resize(size_t new_size_, char char_ = ' ');
     string operator=(const string& s_);
-    //friend string operator+(const string& s_, char char_);
+    friend string operator+(const string& s_, char char_);
 
 //Student C
     ~string() noexcept;

@@ -1,10 +1,8 @@
 #include <cstdlib>
 #include <iostream>
-#include <type_traits>
 #include "string.h"
 
 void print(string s);
-
 void test_hello_world();
 
 //Student A
@@ -18,7 +16,7 @@ void  test_string_plus_charstar();
 //Student B
 void test_constr_cstring();
 void test_resize();
-//void test_operatorsB(); ne pas supprimer
+void test_operatorsB();
 
 //Student C
 void test_1(string s);
@@ -34,7 +32,7 @@ void test_operator_plus();
 int main() {
 
 //Student A
-  std::cout<< "Student A" <<std::endl;
+  std::cout<< ">>> Student A" <<std::endl;
   test_copy_constructorA();
   test_c_str();
   test_size();
@@ -44,16 +42,15 @@ int main() {
   std::cout<<std::endl;
 
 //Student B
-  std::cout<< "Student B" <<std::endl;
+  std::cout<< ">>> Student B" <<std::endl;
   test_constr_cstring();
-  std::cout<<std::endl;
   test_resize();
   std::cout<<std::endl;
-  //test_operatorsB(); ne pas supprimer
+  test_operatorsB();
   std::cout<<std::endl;
 
 //Student C
-  std::cout<< "Student C" <<std::endl;
+  std::cout<< ">>> Student C" <<std::endl;
   test_1(string()); //OK
   test_default_constructor(); //OK
   test_constructor_with_char_ptr(); //OK
@@ -74,7 +71,9 @@ void print(string s){
   std::cout << std::endl;
 }
 
-//Student A
+
+// Student A
+
 void test_copy_constructorA(){
   string a("Hey!");
   std::cout << "String a: " << std::endl;
@@ -110,10 +109,7 @@ void test_clear(){
 
 void test_string_equal_char(){
   string f;
-  char* letter = new char;
-  *letter = 'F';
-  std::cout << "Char = 'F' " << std::endl;
-  f = letter;
+  f = 'F';
   std::cout << "Usage of = operator (string=char): " << std::endl;
   std::cout << "f = ";
   print(f);
@@ -127,7 +123,9 @@ void test_string_plus_charstar(){
   print(g);
 }
 
-//Student B
+
+// Student B
+
 void test_constr_cstring(){
   char c[] = "this is a c-string\0";
   std::cout << "char[] : " << c << std::endl;
@@ -139,16 +137,15 @@ void test_constr_cstring(){
 void test_resize(){
   string resize_me("this is a c-string\0");
   std::cout << "string : ";
-  print(resize_me);
   std::cout << "initial length : " << resize_me.length() << std::endl;
   resize_me.resize(10);
-  std::cout << ">>> Resized" << std::endl;
+  std::cout << "-> Resized" << std::endl;
   std::cout << "string : ";
   print(resize_me);
   std::cout << "length : " << resize_me.length() << std::endl;
   std::cout << "max length : " << resize_me.max_size() << std::endl;
 }
-/* ne pas supprimer
+
 void test_operatorsB(){
   std::cout << "s1 : ";
   string s1("Here's a c-string\0");
@@ -159,15 +156,17 @@ void test_operatorsB(){
   print(s2);
 
   s2=s1;
-  std::cout << "s2 : ";
+  std::cout << "s2=s1 : ";
   print(s2);
 
   string s3 = s2 + '!';
-  std::cout << "s3 : ";
+  std::cout << "s3=s2+! : ";
   print(s3);
-}*/
+}
 
-//Student C
+
+// Student C
+
 void test_1(string a){
   size_t a_length = a.length();
   if (a_length > 0) {
@@ -215,11 +214,6 @@ void test_reserve() {
   string b("Hello");
   b.reserve(4);
   std::cout << "Reserve: " << b.capacity() << std::endl;
-  /*
-  string c("Hello");
-  c.reserve(-4);
-  std::cout << "Reserve: " << c.capacity() << std::endl;
-  */
 }
 
 void test_operator_equal() {

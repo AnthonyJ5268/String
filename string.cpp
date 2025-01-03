@@ -56,19 +56,21 @@ void string::clear() {
     string_value_ = new char[1];
     string_value_[0] = '\0';
     len_ = 0;
+    capacity_ = 1;
 }
 
 // operator=(char) 
 string& string::operator=(char c) {
     delete[] this->string_value_;
     len_ = 1;
+    capacity_ = 2;
     string_value_ = new char[2];
     string_value_[0] = c;
     string_value_[1] = '\0';
     return *this;
 }
 
-// FONCTION DE GEHAO
+
 // operator+(const string&, const char*)
 string operator+(const string& s, const char* c) {
     size_t s_size = s.size();
@@ -77,7 +79,7 @@ string operator+(const string& s, const char* c) {
         c_size++;
     }
     string res(s);
-    //delete[] res.string_value_;
+    delete[] res.string_value_;
     res.len_ = s_size + c_size;
     res.string_value_ = new char[res.len_ + 1];
     for ( size_t i = 0; i < s_size; i++) {
@@ -89,18 +91,11 @@ string operator+(const string& s, const char* c) {
     res.string_value_[res.len_] = '\0';
     return res;
 }
-/*
-// !!!!
-// ADAPTATION DEPUIS FONCTION ANTHONY (STUDENT B)
-string operator+(const string& s_, const char* char_) {
-    string s_res_(s_);
-    s_res_.resize(s_.len_ + 1);
-    s_res_.string_value_[s_.len_] = *char_;
-    return s_res_;
-}*/
 
 
 //Student B
+
+// Constructor from c string
 string::string(const char* c_string){
   len_ = 0;
 
@@ -123,15 +118,19 @@ string::string(const char* c_string){
   string_value_[len_] = '\0';
 }
 
+// length()
 size_t string::length() const{
   return len_;
 }
 
+// max_size()
 size_t string::max_size() const{
   return max_length_;
 }
 
+// resize()
 void string::resize(size_t new_size_, char char_){
+  assert(new_size_ <= max_length_ && "new size should be between 0 and 100");
 
   char cont[new_size_];
 
@@ -143,13 +142,11 @@ void string::resize(size_t new_size_, char char_){
       cont[i] = char_;
     }
   }
-
   if (len_ > new_size_){
     for ( size_t i = 0; i < new_size_; i++ ){
       cont[i] = string_value_[i];
     }
   }
-
   delete[] string_value_;
   string_value_ = new char[new_size_];
 
@@ -158,30 +155,33 @@ void string::resize(size_t new_size_, char char_){
   }
   len_ = new_size_;
   capacity_ = len_+1;
+  string_value_[len_] = '\0';
+
 }
 
-
+// operator=(condt string&)
 string string::operator=(const string& s_){
   this->resize(s_.length());
   
   for ( size_t i = 0; i < len_; i++ ){
     string_value_[i] = s_.getChar(i);
   }
+  string_value_[len_] = '\0';
   return *this;
 }
 
-/*
+// operator+(const string&, char)
 string operator+(const string& s_, char char_) {
     string s_res_(s_);
     s_res_.resize(s_.len_ + 1);
     s_res_.string_value_[s_.len_] = char_;
     return s_res_;
-}*/
+}
 
 //Student C
 
 /*
-destrucor attention !!! A revoir a la fin du projet pour tout retirer / remettre à 0 !
+destructor attention !!! A revoir a la fin du projet pour tout retirer / remettre à 0 !
 String destructor
 Destroys the string object.
 This deallocates all the storage capacity allocated by the string using its allocator.
