@@ -8,6 +8,7 @@ class string {
     string();
     char getChar(size_t i) const;
 // Student A
+    string(const string& other);
 
 //Student B
     string(const char* c_string);
@@ -18,11 +19,18 @@ class string {
     friend string operator+(const string& s_, char char_);
 
 //Student C
+    ~string() noexcept;
+    size_t capacity() const noexcept;
+    bool empty() const noexcept;
+    void reserve(size_t n) noexcept;
+    string& operator=(const char *s) noexcept;
+    friend string operator+(const string& lhs, const string& rhs) noexcept;
 
-  protected:
+protected:
     char* string_value_;
     size_t len_;
     size_t max_length_ = 100;
+    size_t capacity_;
 
 };
 
