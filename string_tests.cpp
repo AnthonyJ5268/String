@@ -8,6 +8,12 @@ void print(string s);
 void test_hello_world();
 
 //Student A
+void  test_copy_constructorA();
+void  test_c_str();
+void  test_size();
+void  test_clear();
+void  test_string_equal_char();
+void  test_string_plus_charstar();
 
 //Student B
 void test_constr_cstring();
@@ -29,39 +35,12 @@ int main() {
 
 //Student A
   std::cout<< "Student A" <<std::endl;
-  std::cout<<std::endl;
-  string a = string();
-  print(a);
-
-  string b = a; // copy constructor
-  print(b);
-
-  char* c = b.c_str(); // c_str() member function
-  std::cout << "String b to c_str: " << c << std::endl;
-
-  std::cout << "The size of string b is " << b.size() << std::endl; // size() member function
-
-  b.clear();
-  std::cout << "Strings cleared." << std::endl;
-  std::cout << "String b cleared: " << std::endl;
-  print(b);
-    
-  string d;
-  char* letter = new char;
-  *letter = 'D';
-  d = letter;
-  std::cout << "Usage of = operator: " << std::endl;
-  std::cout << "d = ";
-  print(d);
-
-// !!!!! <<<<<<
-// ça c'est l'operator string&+string& et pas string&+char*
-  string e;
-  e = e + " How are you?";
-  std::cout << "Usage of + operator: " << std::endl;
-  std::cout << "(Hello world) + (How are you?) = ";
-  print(e);
-
+  test_copy_constructorA();
+  test_c_str();
+  test_size();
+  test_clear();
+  test_string_equal_char();
+  test_string_plus_charstar();
   std::cout<<std::endl;
 
 //Student B
@@ -96,6 +75,57 @@ void print(string s){
 }
 
 //Student A
+void test_copy_constructorA(){
+  string a("Hey!");
+  std::cout << "String a: " << std::endl;
+  print(a);
+
+  string b = a; // copy constructor
+  std::cout << "String b copied from string a: " << std::endl;
+  print(b);
+}
+
+void test_c_str(){
+  string c;
+  char* c_string = c.c_str(); // c_str() member function
+  std::cout << "String c to c_str: " << c_string << std::endl;
+}
+
+void test_size(){
+  string d;
+  std::cout << "String d: " << std::endl;
+  print(d);
+  std::cout << "The size of string d is " << d.size() << std::endl;
+}
+
+void test_clear(){
+  string e;
+  std::cout << "String e: " << std::endl;
+  print(e);
+  e.clear();
+  std::cout << "Strings cleared." << std::endl;
+  std::cout << "String e cleared: " << std::endl;
+  print(e);
+}
+
+void test_string_equal_char(){
+  string f;
+  char* letter = new char;
+  *letter = 'F';
+  std::cout << "Char = 'F' " << std::endl;
+  f = letter;
+  std::cout << "Usage of = operator (string=char): " << std::endl;
+  std::cout << "f = ";
+  print(f);
+}
+
+void test_string_plus_charstar(){
+  string g;
+  g = g + " How are you?";
+  std::cout << "Usage of + operator: " << std::endl;
+  std::cout << "(Hello world) + (How are you?) = ";
+  print(g);
+}
 
 //Student B
 void test_constr_cstring(){
