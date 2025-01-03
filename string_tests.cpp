@@ -88,7 +88,6 @@ void test_c_str(){
   string c;
   char* c_string = c.c_str(); // c_str() member function
   std::cout << "String c to c_str: " << c_string << std::endl;
-  delete[] c_string;
 }
 
 void test_size(){
@@ -128,9 +127,9 @@ void test_string_plus_charstar(){
 // Student B
 
 void test_constr_cstring(){
-  char cs[] = "this is a c-string\0";
-  std::cout << "char[] : " << cs << std::endl;
-  string from_cs(cs);
+  char c[] = "this is a c-string\0";
+  std::cout << "char[] : " << c << std::endl;
+  string from_cs(c);
   std::cout << "string : ";
   print(from_cs);
 }

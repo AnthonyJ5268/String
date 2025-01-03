@@ -130,8 +130,7 @@ size_t string::max_size() const{
 
 // resize()
 void string::resize(size_t new_size_, char char_){
-  assert(new_size_ <= max_length_ && "new size should be between 0 and 100"); 
-  // works for negative values since size_t is unsigned and values<0 are interpreted as >100
+  assert(new_size_ <= max_length_ && "new size should be between 0 and 100");
 
   char cont[new_size_];
 
@@ -139,7 +138,7 @@ void string::resize(size_t new_size_, char char_){
     for ( size_t i = 0; i < len_; i++ ){
       cont[i] = string_value_[i];
     }
-    for ( size_t i = len_; i < new_size_; i++ ){ //complete with repeated characters
+    for ( size_t i = len_; i < new_size_; i++ ){
       cont[i] = char_;
     }
   }
@@ -157,6 +156,7 @@ void string::resize(size_t new_size_, char char_){
   len_ = new_size_;
   capacity_ = len_+1;
   string_value_[len_] = '\0';
+
 }
 
 // operator=(condt string&)
@@ -166,13 +166,15 @@ string string::operator=(const string& s_){
   for ( size_t i = 0; i < len_; i++ ){
     string_value_[i] = s_.getChar(i);
   }
+  string_value_[len_] = '\0';
   return *this;
 }
 
 // operator+(const string&, char)
 string operator+(const string& s_, char char_) {
     string s_res_(s_);
-    s_res_.resize(s_.len_+1, char_);
+    s_res_.resize(s_.len_ + 1);
+    s_res_.string_value_[s_.len_] = char_;
     return s_res_;
 }
 
@@ -269,7 +271,7 @@ string& string::operator=(const char* s) noexcept {
 
     delete[] this->string_value_;
     this->len_ = taille_s;
-    this->capacity_ = len_ + 1;  // +1 pour le caractere nul , et à voir si on souaite une capacité plus grande
+    this->capacity_ = len_ + 1;  // +1 pour le caractere nulle , et à voir si on souaite une capacité plus grande
     this->string_value_ = new char[this->capacity_];
     for (size_t i = 0; i < this->len_; ++i) {
         this->string_value_[i] = s[i];
