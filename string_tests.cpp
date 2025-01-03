@@ -40,8 +40,8 @@ void test_constr_cstring(){
   std::cout << c << std::endl;
   string from_cs(c);
   print(from_cs);
-  std::cout << from_cs.length() << std::endl;
-  std::cout << from_cs.max_size() << std::endl;
+  std::cout << "length : " << from_cs.length() << std::endl;
+  std::cout << "max length : " << from_cs.max_size() << std::endl;
 }
 
 void test_resize(){

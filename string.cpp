@@ -87,31 +87,12 @@ string string::operator=(const string& s_){
   }
   return *this;
 }
-/*
-string operator+(const string& s_, char char_){
-  string s_res_ ;
-  size_t new_size_ = s_.length()+1;
 
-  s_res_.resize(new_size_, char_);
-  
-  for ( size_t i = 0; i < s_.length(); i++ ){
-    s_res_.string_value_[i] = s_.getChar(i);
-  }
-  s_res_.string_value_[new_size_] = char_;
-
-  for ( size_t i = 0; i < new_size_; i++ ){
-    std::cout << s_res_.getChar(i) << std::endl;
-  }
-  return s_res_;
-}*/
 
 string operator+(const string& s_, char char_) {
     string s_res_(s_);
     s_res_.resize(s_.len_ + 1);
-    //int new_size = s_.len_ + 1;
     s_res_.string_value_[s_.len_] = char_;
-    std::cout<<s_res_.len_<<std::endl;
-    std::cout<<s_.len_<<std::endl;
     return s_res_;
 }
 
