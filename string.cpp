@@ -1,9 +1,7 @@
 #include <cstdlib>
 #include <iostream>
-
-#include "string.h"
 #include <cassert>
-// #include <cstddef>  to see if we are allowed to use this library for size_t
+#include "string.h"
 
 
 string::string() {
