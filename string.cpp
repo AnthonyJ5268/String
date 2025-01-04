@@ -8,7 +8,7 @@ string::string() {
     len_ = 11;
     capacity_ = 12;
     string_value_ = new char[capacity_];
-    char cont[capacity_] = {'H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd','\0'};
+    char cont[12] = {'H', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd','\0'};
     for ( size_t i = 0; i < capacity_; i++ ){
       string_value_[i] = cont[i];
     }
@@ -271,7 +271,7 @@ string& string::operator=(const char* s) noexcept {
 
     delete[] this->string_value_;
     this->len_ = taille_s;
-    this->capacity_ = len_ + 1;  // +1 pour le caractere nulle , et à voir si on souaite une capacité plus grande
+    this->capacity_ = len_ + 1;  // +1 pour le caractere nulle , et à voir si on souaite allouer un peu plus d'espace
     this->string_value_ = new char[this->capacity_];
     for (size_t i = 0; i < this->len_; ++i) {
         this->string_value_[i] = s[i];
